@@ -3,7 +3,7 @@ FROM openjdk:8-jdk-alpine
 WORKDIR /zookeeper
 
 ARG MIRROR=http://mirror.vorboss.net/apache
-ARG VERSION=3.4.8
+ARG VERSION=3.4.9
 ARG SIGN=http://www-eu.apache.org/dist
 ARG EXHIBITOR_VERSION=1.5.6
 
@@ -34,6 +34,12 @@ RUN set -ex && \
   rm -fr recipes contrib dist-maven docs src target pom.xml && \
   apk del wget gnupg maven && \
   rm -rf /var/cache/apk/*
+
+RUN set -e && \
+  echo "zookeeper-install-directory=/zookeeper" >> exhibitor.properties && \
+  echo "zookeeper-data-directory=/zookeeper/zk-data" >> exhibitor.properties && \
+  echo "zookeeper-log-directory=/zookeeper/zk-log" >> exhibitor.properties && \
+  echo "auto-manage-instances=1" >> exhibitor.properties
 
 EXPOSE 2181 2888 3888 8080
 

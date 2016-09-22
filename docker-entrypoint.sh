@@ -1,3 +1,3 @@
 #!/bin/bash
 
-exec java -jar exhibitor.jar $@
+exec java -jar exhibitor.jar --defaultconfig /zookeeper/exhibitor.properties $@
