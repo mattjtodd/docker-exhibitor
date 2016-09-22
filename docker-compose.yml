@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+
+  exhibitor:
+    image: exhibitor:latest
+    command: -c file --fsconfigdir /zookeeper/fsconfig --servo true
+    ports:
+     - "8080"
+    volumes:
+     - fsconfigdir:/zookeeper/fsconfig
+volumes:
+  fsconfigdir:
+
+
